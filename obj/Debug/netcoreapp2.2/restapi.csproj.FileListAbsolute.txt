@@ -1,0 +1,16 @@
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\bin\Debug\netcoreapp2.2\restapi.deps.json
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\bin\Debug\netcoreapp2.2\restapi.runtimeconfig.json
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\bin\Debug\netcoreapp2.2\restapi.runtimeconfig.dev.json
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\bin\Debug\netcoreapp2.2\restapi.dll
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\bin\Debug\netcoreapp2.2\restapi.pdb
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\obj\Debug\netcoreapp2.2\restapi.csprojAssemblyReference.cache
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\obj\Debug\netcoreapp2.2\restapi.RazorAssemblyInfo.cache
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\obj\Debug\netcoreapp2.2\restapi.RazorAssemblyInfo.cs
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\obj\Debug\netcoreapp2.2\restapi.AssemblyInfoInputs.cache
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\obj\Debug\netcoreapp2.2\restapi.AssemblyInfo.cs
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\obj\Debug\netcoreapp2.2\restapi.RazorTargetAssemblyInfo.cache
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\obj\Debug\netcoreapp2.2\restapi.dll
+C:\Users\apple\Desktop\Laura\5200\assignments\1\restapi\obj\Debug\netcoreapp2.2\restapi.pdb
