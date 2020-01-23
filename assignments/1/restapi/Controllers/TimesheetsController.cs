@@ -68,14 +68,10 @@ namespace restapi.Controllers
             return timecard;
         }
 
-        //Deletes timecard for id from repo
-        [HttpDelete("{id:guid}/delete")]
-        [Produces(ContentTypes.Transition)]
-        [ProducesResponseType(typeof(Transition), 200)]
-        [ProducesResponseType(typeof(InvalidStateError), 409)]
+        [HttpDelete("{id:guid}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public IActionResult Delete(Guid id, [FromBody] Deletion d)
+        public IActionResult Delete(Guid id)
         {
             logger.LogInformation($"Looking for timesheet {id}");
 
@@ -91,13 +87,9 @@ namespace restapi.Controllers
                 return StatusCode(409, new InvalidStateError() { });
             }
 
-            var t = new Transition(d, TimecardStatus.Deleted);
-            logger.LogInformation($"Deleting {t}");
-            timecard.Transitions.Add(t);
-
             repository.Delete(id);
 
-            return Ok(t);
+            return Ok();
         }
 
         [HttpGet("{id:guid}/lines")]
@@ -150,34 +142,6 @@ namespace restapi.Controllers
             }
             else
             {
-                return NotFound();
-            }
-        }
-
-        // Replaces line of given id with replacement line
-        [HttpPost("{id:guid}/lines/lineID:guid")]
-        [Produces(ContentTypes.TimesheetLine)]
-        [ProducesResponseType(typeof(TimecardLine), 200)]
-        [ProducesResponseType(404)]
-        [ProducesResponseType(typeof(InvalidStateError), 409)]
-        public IActionResult ReplaceLine(Guid id, Guid lineID, [FromBody] DocumentLine replacement){
-            logger.LogInformation($"Looking for timesheet ID {id}");
-            Timecard tc = repository.Find(id);
-
-            if(tc ==null){
-                return NotFound();
-            }
-            if (tc.Status != TimecardStatus.Draft){
-                return StatusCode(409, new InvalidStateError() {});
-            }
-
-            logger.LogInformation($"Looking for timecard line ID {lineID}");
-
-            if (tc.HasLine(lineID)){
-                tc.DeleteLine(lineID);
-                repository.Update(tc);
-                return AddLine(id, replacement);
-            } else {
                 return NotFound();
             }
         }
@@ -417,7 +381,6 @@ namespace restapi.Controllers
         [ProducesResponseType(404)]
         [ProducesResponseType(typeof(InvalidStateError), 409)]
         [ProducesResponseType(typeof(EmptyTimecardError), 409)]
-        [ProducesResponseType(typeof(SelfApprovalError), 409)]
         public IActionResult Approve(Guid id, [FromBody] Approval approval)
         {
             logger.LogInformation($"Looking for timesheet {id}");
@@ -429,9 +392,6 @@ namespace restapi.Controllers
                 if (timecard.Status != TimecardStatus.Submitted)
                 {
                     return StatusCode(409, new InvalidStateError() { });
-                }
-                if (approval.Person == timecard.Employee){
-                    return StatusCode(409, new SelfApprovalError() {});
                 }
 
                 var transition = new Transition(approval, TimecardStatus.Approved);

@@ -32,19 +32,5 @@ namespace restapi.Controllers
                 }
             };
         }
-
-        // Create new timecard object
-        [Route("~/")]
-        [HttpPost]
-        [Produces(ContentTypes.Timesheet)]
-        [ProducesResponseType(typeof(Timecard), 200)]
-        public Timecard Create([FromBody] DocumentPerson p){
-            logger.LogInformation($"Creation of timesheet for {p.ToString()}");
-            var tc = new Timecard(p.Id);
-            var entered = new Entered() {Person = p.Id};
-            tc.Transitions.Add(new Transition(entered));
-            repository.Add(tc);
-            return tc;
-        }
     }
 }

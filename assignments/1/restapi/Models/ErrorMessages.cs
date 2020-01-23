@@ -20,10 +20,4 @@ namespace restapi.Models
 
         public string Message { get => "No state transition of requested type present in timecard"; }
     }
-
-    public class SelfApprovalError {
-        public int ErrorCode { get => 103; }
-
-        public string Message { get => "Approver of the timesheet cannot be the employee on timesheet."; }
-    }
 }

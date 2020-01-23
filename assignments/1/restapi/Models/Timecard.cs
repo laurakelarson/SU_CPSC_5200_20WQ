@@ -90,14 +90,6 @@ namespace restapi.Models
                         Reference = $"/timesheets/{UniqueIdentifier}/lines"
                     });
 
-                    links.Add(new ActionLink()
-                    {
-                        Method = Method.Delete,
-                        Type = ContentTypes.Deletion,
-                        Relationship = ActionRelationship.Delete,
-                        Reference = $"/timesheets/{UniqueIdentifier}/deletion"
-                    });
-
                     break;
 
                 case TimecardStatus.Submitted:
@@ -196,15 +188,6 @@ namespace restapi.Models
                 .Any(l => l.UniqueIdentifier == lineId);
         }
 
-        public bool DeleteLine(Guid lineID){
-            return Lines.Remove(Lines.SingleOrDefault(l => l.UniqueIdentifier == lineID));
-        }
-
-        public TimecardLine UpdateLine(Guid id, DocumentLine newline){
-            var line = Lines.SingleOrDefault(l => l.UniqueIdentifier == id);
-            line.Update(newline);
-            return line;
-        }
 
         public override string ToString()
         {
