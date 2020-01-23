@@ -6,6 +6,15 @@ namespace restapi.Controllers
 {
     public class RootController : Controller
     {
+
+        private readonly TimesheetsRepository repository;
+        private readonly ILogger logger;
+
+        public RootController(ILogger<RootController> l){
+            repository = new TimesheetsRepository();
+            logger = l;
+        }
+
         // GET api/values
         [Route("~/")]
         [HttpGet]
@@ -31,6 +40,20 @@ namespace restapi.Controllers
                     ApplicationRelationship.Version, "0.1"
                 }
             };
+        }
+
+        // Create new timecard object
+        [Route("~/")]
+        [HttpPost]
+        [Produces(ContentTypes.Timesheet)]
+        [ProducesResponseType(typeof(Timecard), 200)]
+        public Timecard Create([FromBody] DocumentPerson p){
+            logger.LogInformation($"Creation of timesheet for {p.ToString()}");
+            var tc = new Timecard(p.Id);
+            var entered = new Entered() {Person = p.Id};
+            tc.Transitions.Add(new Transition(entered));
+            repository.Add(tc);
+            return tc;
         }
     }
 }
